@@ -28,7 +28,7 @@ public class FarmDetailsController {
 	@PostMapping("/send-details")
 	public ResponseEntity <FarmDetails> sendDetails(@RequestBody FarmDetails details){
 		FarmDetails newDetails = new FarmDetails();
-	
+		System.out.println(details);
 		BeanUtils.copyProperties(details, newDetails);
 		User foundUser = farmRegisterRepository.findById(details.getUserId()).get();
 		FarmDetails foundFarmDetails = repository.findFarmDetailsByFarmName(details.getFarmName());
@@ -53,7 +53,7 @@ public class FarmDetailsController {
 			foundFarmDetails.setMutton(details.getMutton());
 			foundFarmDetails.setPear(details.getPear());
 			foundFarmDetails.setPork(details.getPork());
-			
+			foundFarmDetails.setStrawberry(details.getStrawberry());
 			foundFarmDetails.setTomato(details.getTomato());
 			foundFarmDetails.setPoultry(details.getPoultry());
 			
