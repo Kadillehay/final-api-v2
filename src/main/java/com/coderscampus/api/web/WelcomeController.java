@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coderscampus.api.domain.User;
 
 @RestController
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 public class WelcomeController {
 
 	@GetMapping ("/welcome")
@@ -20,6 +20,11 @@ public class WelcomeController {
 		
 		return ResponseEntity.ok(farm);
 
+	}
+	
+	@GetMapping("/")
+	public String getHome() {
+		return "Hello Home";
 	}
 
 }

@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,13 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coderscampus.api.domain.User;
 import com.coderscampus.api.models.UserModel;
 import com.coderscampus.api.repository.FarmRegisterRepository;
+import com.coderscampus.api.security.jwt.JwtDecoder;
+import com.coderscampus.api.security.jwt.JwtToPrincipalConverter;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class DashboardController {
 
 	@Autowired
+	AuthenticationManager authenticationManager;
+	@Autowired
 	FarmRegisterRepository farmRegisterRepo;
+	@Autowired
+	JwtDecoder jwtDecoder;
+	
+	@Autowired
+	PasswordEncoder encoder;
+	@Autowired
+	JwtToPrincipalConverter converter;
 
 	// Ogul I just copied this from the register, I assume the logic is the same?
 	@PostMapping("/user-dashboard")
@@ -44,11 +59,18 @@ public class DashboardController {
 	
 			foundUser.setFarmName(user.getFarmName());
 			foundUser.setEmailAddress(user.getEmailAddress());
-			foundUser.setPassword(user.getPassword());
+			foundUser.setPassword(encoder.encode(user.getPassword()));
 			foundUser.setPhoneNumber(user.getPhoneNumber());
 			updatedUser = farmRegisterRepo.save(foundUser);
 		}
 
 		return ResponseEntity.ok(updatedUser);
+	}
+	
+	@GetMapping("/get-farmer-details")
+	public ResponseEntity<User> getFarmerDetails() {
+		var user = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		return ResponseEntity.ok(farmRegisterRepo.findByEmailAddress(user).orElseThrow());
 	}
 }

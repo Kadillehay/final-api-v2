@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.coderscampus.api.domain.User;
 import com.coderscampus.api.repository.FarmRegisterRepository;
+import com.coderscampus.api.security.jwt.JwtIssuer;
 import com.coderscampus.api.service.UserService;
 
 @RestController
@@ -24,17 +26,25 @@ public class FarmRegistryController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private JwtIssuer jwtIssuer;
 	
 	@PostMapping("/register")
-	public ResponseEntity<Map<String, User >> submitRegister(@RequestBody User farmRegistry) {
+	public ResponseEntity<String> submitRegister(@RequestBody User farmRegistry) {
 		User user = new User();
 		BeanUtils.copyProperties(farmRegistry, user);
 		
-		
-		
+		// Set role as well as ROLE_USER
+		user.setPassword(passwordEncoder.encode(farmRegistry.getPassword()));
+		System.out.println("USER: " + user);
+		user.setRoles("ROLE_USER");
 		User registered = farmRegisterRepo.save(user);
-		return ResponseEntity.ok(Map.of("id", registered));
+		var token = jwtIssuer.issue(registered.getUserId(), registered.getEmailAddress(), "ROLE_USER");
+//		return ResponseEntity.ok(Map.of("id", registered));
+		return ResponseEntity.ok(token);
 	}
 	@PostMapping("/get-user")
 	public ResponseEntity<User> getUser(@RequestBody Long id){

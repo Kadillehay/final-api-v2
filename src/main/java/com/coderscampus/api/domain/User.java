@@ -24,7 +24,20 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 		private String lastName;
 		private String fullName;
 		private String password;
+		private String roles;
 		
+		public Long getUserId() {
+			return userId;
+		}
+		public void setUserId(Long userId) {
+			this.userId = userId;
+		}
+		public String getRoles() {
+			return roles;
+		}
+		public void setRoles(String roles) {
+			this.roles = roles;
+		}
 		@JsonIgnore
 		@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 		@PrimaryKeyJoinColumn
@@ -109,7 +122,7 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 			return "User [userId=" + userId + ", farmName=" + farmName + ", product=" + product + ", phoneNumber="
 					+ phoneNumber + ", emailAddress=" + emailAddress + ", firstName=" + firstName + ", lastName="
 					+ lastName + ", fullName=" + fullName + ", password=" + password + ", farmDetails=" + farmDetails
-					+ "]";
+					+ roles + "]";
 		}
 
 		
