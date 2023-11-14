@@ -53,9 +53,9 @@ public class FarmSecurityConfig {
 				.securityMatcher("/**")	
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/login", "/get-details", "/send-details", "/logged", "/register",
-								"/get-farmer-details", "/update-user")
+								"/get-farmer-details", "/update-user", "/contact")
 						.permitAll()
-						.requestMatchers("/admin-dashboard").hasRole("ADMIN").
+						.requestMatchers("/admin").hasAuthority("ADMIN").
 						anyRequest().authenticated())
 
 				.logout() // This is where you configure logout

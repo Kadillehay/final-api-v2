@@ -32,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				.map(jwtToPrincipalConverter::convert)
 					.map(FarmUserDetailsAuthToken::new)
 						.ifPresent(authentication -> SecurityContextHolder.getContext().setAuthentication(authentication));
-		System.out.println(SecurityContextHolder.getContext());
+//		System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		filterChain.doFilter(request, response);
 		
 	}
