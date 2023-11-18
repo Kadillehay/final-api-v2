@@ -1,11 +1,12 @@
 package com.coderscampus.api.web;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,10 +44,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin-dashboard")
-	 @PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<String> getAdminDashboard(UserModel user) throws Exception {
-		System.out.println(SecurityContextHolder.getContext());
-		return ResponseEntity.ok("User: " + user);
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public ResponseEntity<Map<String, Boolean>> getAdminDashboard(UserModel user) throws Exception {
+		return ResponseEntity.ok(Map.of("isAdmin", true));
 	}
 	
 	@GetMapping("/logged")
@@ -58,4 +58,9 @@ public class AdminController {
 	        }
 	        return null;
 	    }
+	@GetMapping("/get-all-farms")
+	public ResponseEntity<List<FarmDetails>> getAllFarms() {
+		System.out.println("Running");
+		return ResponseEntity.ok(repo.findAll());
+	}
 }

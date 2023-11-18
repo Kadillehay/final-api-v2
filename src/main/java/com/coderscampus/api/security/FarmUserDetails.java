@@ -20,7 +20,6 @@ public class FarmUserDetails implements UserDetails {
 	private Collection<? extends GrantedAuthority> authorities;
 	
 	public FarmUserDetails(User user) {
-		System.out.println(user.getPassword());
 		this.username = user.getEmailAddress();
 		this.password = user.getPassword();
 		this.userId = user.getId();
@@ -82,8 +81,8 @@ public class FarmUserDetails implements UserDetails {
 		this.password = password;
 	}
 
-	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-		this.authorities = authorities;
+	public void setAuthorities(String authorities) {
+		this.authorities=  List.of(new SimpleGrantedAuthority(authorities));
 	}
 
 	public long getUserId() {

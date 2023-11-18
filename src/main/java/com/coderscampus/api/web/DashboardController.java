@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.coderscampus.api.domain.User;
 import com.coderscampus.api.models.UserModel;
+import com.coderscampus.api.repository.FarmDetailsRepository;
 import com.coderscampus.api.repository.FarmRegisterRepository;
 import com.coderscampus.api.security.jwt.JwtDecoder;
 import com.coderscampus.api.security.jwt.JwtToPrincipalConverter;
@@ -31,6 +32,8 @@ public class DashboardController {
 	@Autowired
 	JwtDecoder jwtDecoder;
 	
+	@Autowired
+	FarmDetailsRepository farmDetailsRepository;
 	@Autowired
 	PasswordEncoder encoder;
 	@Autowired
@@ -51,7 +54,6 @@ public class DashboardController {
 
 	@PostMapping("/update-user")
 	public ResponseEntity<User> updateUser(@RequestBody UserModel user) {
-		System.out.println(user);
 		User foundUser = farmRegisterRepo.findUserByEmailAndPassword(user.getOriginalEmail(), user.getOriginalPassword());
 		User updatedUser = null;
 		if(foundUser.getEmailAddress() != null) {
@@ -62,6 +64,7 @@ public class DashboardController {
 			foundUser.setPassword(encoder.encode(user.getPassword()));
 			foundUser.setPhoneNumber(user.getPhoneNumber());
 			updatedUser = farmRegisterRepo.save(foundUser);
+			
 		}
 
 		return ResponseEntity.ok(updatedUser);

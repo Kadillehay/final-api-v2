@@ -53,14 +53,17 @@ public class FarmSecurityConfig {
 				.securityMatcher("/**")	
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/login", "/get-details", "/send-details", "/logged", "/register",
-								"/get-farmer-details", "/update-user")
+								"/get-farmer-details", "/update-user", "/logout" , "/contact","/get-user-farm-details")
 						.permitAll()
-						.requestMatchers("/admin-dashboard").hasRole("ADMIN").
+						.requestMatchers("/admin-dashboard").hasRole("ADMIN")
+						.requestMatchers("/admin-contact").hasRole("ADMIN")
+						.requestMatchers("get-all-farms").hasRole("ADMIN")
+						.
 						anyRequest().authenticated())
 
 				.logout() // This is where you configure logout
 				.logoutUrl("/logout") // URL to trigger logout
-				.logoutSuccessUrl("/login?logout") // Redirect to this page after successful logout
+				.logoutSuccessUrl("/login") // Redirect to this page after successful logout
 				.invalidateHttpSession(true) // Invalidate session
 				.deleteCookies("JSESSIONID"); // Remove cookies
 
@@ -86,7 +89,8 @@ public class FarmSecurityConfig {
 
 	@Bean
 	public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-		return http.getSharedObject(AuthenticationManagerBuilder.class).userDetailsService(detailsService)
+		return http.getSharedObject(AuthenticationManagerBuilder.class)
+				.userDetailsService(detailsService)
 				.passwordEncoder(passwordEncoder())
 
 				.and()

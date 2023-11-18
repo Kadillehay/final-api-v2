@@ -12,7 +12,7 @@ public class FarmUserDetailsAuthToken extends AbstractAuthenticationToken {
 	
 	public FarmUserDetailsAuthToken(FarmUserDetails farmUserDetails) {
 		super(farmUserDetails.getAuthorities());
-		System.out.println("FARM USER DETAILS: " +  farmUserDetails);
+	
 		this.farmUserDetails = farmUserDetails;
 		setAuthenticated(true);
 	}

@@ -1,5 +1,8 @@
 package com.coderscampus.api.web;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,8 +42,13 @@ public class LoginController {
 				.authenticate(new UsernamePasswordAuthenticationToken(user.getEmailAddress(), user.getPassword()));
 		
 		var principal = (FarmUserDetails) authentication.getPrincipal();
-		var roles = principal.getAuthorities().stream().map(GrantedAuthority::getAuthority).toString();
-		var token = jwtIssuer.issue(principal.getUserId(), principal.getUsername(), roles);
+		
+		String authorities = principal.getAuthorities().stream()
+				.map(Object::toString)
+				.collect(Collectors.joining(", "));
+		
+//		var roles = authorities.stream().map(GrantedAuthority::getAuthority).toString();
+		var token = jwtIssuer.issue(principal.getUserId(), principal.getUsername(), authorities);
 
 		
 		return ResponseEntity.ok(token);

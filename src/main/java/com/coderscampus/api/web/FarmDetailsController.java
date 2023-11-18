@@ -33,7 +33,7 @@ public class FarmDetailsController {
 		User foundUser = farmRegisterRepository.findById(details.getUserId()).get();
 		FarmDetails foundFarmDetails = repository.findFarmDetailsByFarmName(details.getFarmName());
 		
-		
+		System.out.println("Found-User: " + foundUser);
 		if(foundFarmDetails == null) {
 			
 			foundUser.setFarmDetails(newDetails);

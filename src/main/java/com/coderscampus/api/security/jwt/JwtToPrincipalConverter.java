@@ -16,16 +16,16 @@ public class JwtToPrincipalConverter {
 		farmUserDetails.setUserId(Long.valueOf(jwt.getSubject()));
 		farmUserDetails.setUsername(jwt.getClaim("email").asString());
 		farmUserDetails.setAuthorities(extractAuthoritiesFromClaim(jwt));
-		
 		return farmUserDetails;
 
 	}
 
-	private List<SimpleGrantedAuthority> extractAuthoritiesFromClaim(DecodedJWT jwt) {
+	private String extractAuthoritiesFromClaim(DecodedJWT jwt) {
 		var claim = jwt.getClaim("roles");
+		System.out.println("CLAIM: " + claim);
 		if (claim.isNull() || claim.isMissing())
-			return List.of();
+			return "";
 
-		return claim.asList(SimpleGrantedAuthority.class);
+		return claim.asString();
 	}
 }

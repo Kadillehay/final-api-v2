@@ -30,15 +30,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		extractTokenFromRequest(request)
 			.map(decoder::decode)
 				.map(jwtToPrincipalConverter::convert)
+				// FarmuserDEtails coming from token
 					.map(FarmUserDetailsAuthToken::new)
 						.ifPresent(authentication -> SecurityContextHolder.getContext().setAuthentication(authentication));
-		System.out.println(SecurityContextHolder.getContext());
 		filterChain.doFilter(request, response);
 		
 	}
 	
 	private Optional<String> extractTokenFromRequest(HttpServletRequest request) {
 		var token = request.getHeader("Authorization");
+		
+		// Authrorization: Bearer 123123123123123123123
 		if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
 			return Optional.of(token.substring(7));
 		}

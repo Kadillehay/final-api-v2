@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("security.jwt")
 public class JwtProperties {
 
-	
 	private String secretKey;
 
 	public String getSecretKey() {
@@ -17,5 +16,5 @@ public class JwtProperties {
 	public void setSecretKey(String secretKey) {
 		this.secretKey = secretKey;
 	}
-	
+
 }
