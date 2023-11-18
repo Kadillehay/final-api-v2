@@ -33,6 +33,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				// FarmuserDEtails coming from token
 					.map(FarmUserDetailsAuthToken::new)
 						.ifPresent(authentication -> SecurityContextHolder.getContext().setAuthentication(authentication));
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+//		System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+=======
+>>>>>>> ee3d187 (added admin roles)
+>>>>>>> Stashed changes
 		filterChain.doFilter(request, response);
 		
 	}
