@@ -53,26 +53,9 @@ public class FarmSecurityConfig {
 				.securityMatcher("/**")	
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/login", "/get-details", "/send-details", "/logged", "/register",
-<<<<<<< Updated upstream
-								"/get-farmer-details", "/update-user", "/logout" , "/contact","/get-user-farm-details")
+								"/get-farmer-details", "/update-user")
 						.permitAll()
-=======
-<<<<<<< HEAD
-								"/get-farmer-details", "/update-user", "/contact")
-						.permitAll()
-						.requestMatchers("/admin").hasAuthority("ADMIN").
-=======
-								"/get-farmer-details", "/update-user", "/logout" , "/contact","/get-user-farm-details")
-						.permitAll()
->>>>>>> Stashed changes
-						.requestMatchers("/admin-dashboard").hasRole("ADMIN")
-						.requestMatchers("/admin-contact").hasRole("ADMIN")
-						.requestMatchers("get-all-farms").hasRole("ADMIN")
-						.
-<<<<<<< Updated upstream
-=======
->>>>>>> ee3d187 (added admin roles)
->>>>>>> Stashed changes
+						.requestMatchers("/admin-dashboard").hasRole("ADMIN").
 						anyRequest().authenticated())
 
 				.logout() // This is where you configure logout
