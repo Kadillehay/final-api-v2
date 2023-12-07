@@ -47,7 +47,7 @@ public class FarmDetailsController {
 			foundFarmDetails.setButter(details.getButter());
 			foundFarmDetails.setCarrot(details.getCarrot());
 			foundFarmDetails.setCorn(details.getCorn());
-			foundFarmDetails.setCreams(details.getCreams());
+			foundFarmDetails.setCream(details.getCream());
 			foundFarmDetails.setEgg(details.getEgg());
 			foundFarmDetails.setMilk(details.getMilk());
 			foundFarmDetails.setMutton(details.getMutton());

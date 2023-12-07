@@ -39,7 +39,7 @@ public class FarmDetails {
 	// Dairy
 	private Boolean egg;
 	private Boolean milk;
-	private Boolean creams;
+	private Boolean cream;
 	private Boolean butter;
 	@JsonIgnore
 	@OneToOne
@@ -71,7 +71,7 @@ public class FarmDetails {
 
 	public FarmDetails(String farmName, Boolean beef, Boolean pork, Boolean poultry, Boolean mutton, Boolean tomato,
 			Boolean carrot, Boolean broccoli, Boolean corn, Boolean blueberry, Boolean strawberry, Boolean apple,
-			Boolean pear, Boolean egg, Boolean milk, Boolean creams, Boolean butter) {
+			Boolean pear, Boolean egg, Boolean milk, Boolean cream, Boolean butter) {
 		super();
 		this.farmName = farmName;
 		this.beef = beef;
@@ -88,7 +88,7 @@ public class FarmDetails {
 		this.pear = pear;
 		this.egg = egg;
 		this.milk = milk;
-		this.creams = creams;
+		this.cream = cream;
 		this.butter = butter;
 	}
 
@@ -220,12 +220,12 @@ public class FarmDetails {
 		this.milk = milk;
 	}
 
-	public Boolean getCreams() {
-		return creams;
+	public Boolean getCream() {
+		return cream;
 	}
 
-	public void setCreams(Boolean creams) {
-		this.creams = creams;
+	public void setCream(Boolean cream) {
+		this.cream = cream;
 	}
 
 	public Boolean getButter() {
@@ -249,8 +249,8 @@ public class FarmDetails {
 		return "FarmDetails [farm_details_id=" + farm_details_id + ", farmName=" + farmName + ", beef=" + beef
 				+ ", pork=" + pork + ", poultry=" + poultry + ", mutton=" + mutton + ", tomato=" + tomato + ", carrot="
 				+ carrot + ", broccoli=" + broccoli + ", corn=" + corn + ", blueberry=" + blueberry + ", strawberry="
-				+ strawberry + ", apple=" + apple + ", pear=" + pear + ", egg=" + egg + ", milk=" + milk + ", creams="
-				+ creams + ", butter=" + butter + "]";
+				+ strawberry + ", apple=" + apple + ", pear=" + pear + ", egg=" + egg + ", milk=" + milk + ", cream="
+				+ cream + ", butter=" + butter + "]";
 	}
 
 //	

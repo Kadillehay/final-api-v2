@@ -53,7 +53,7 @@ public class FarmSecurityConfig {
 				.securityMatcher("/**")	
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/login", "/get-details", "/send-details", "/logged", "/register",
-								"/get-farmer-details", "/update-user")
+								"/get-farmer-details", "/update-user", "/contact")
 						.permitAll()
 						.requestMatchers("/admin-dashboard").hasRole("ADMIN").
 						anyRequest().authenticated())

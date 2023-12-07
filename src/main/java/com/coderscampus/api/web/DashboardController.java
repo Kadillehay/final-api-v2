@@ -39,7 +39,7 @@ public class DashboardController {
 	@Autowired
 	JwtToPrincipalConverter converter;
 
-	// Ogul I just copied this from the register, I assume the logic is the same?
+
 	@PostMapping("/user-dashboard")
 	public ResponseEntity<List<Object>> updateRegister(@RequestBody User user) {
 		System.out.println(user);
