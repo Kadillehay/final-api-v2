@@ -63,4 +63,8 @@ public class AdminController {
 		System.out.println("Running");
 		return ResponseEntity.ok(repo.findAll());
 	}
+	@GetMapping("/user-info")
+   public ResponseEntity<List<User>> getUserInfo() {
+		return ResponseEntity.ok(registerRepo.findAll());
+	}
 }
