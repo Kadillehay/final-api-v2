@@ -66,7 +66,7 @@ public class FarmDetailsController {
 	}
 	@GetMapping("/get-details")
 	public ResponseEntity <List<FarmDetails>> sendDetails(){
-		
+		System.out.println("dogpooperation");
 		
 		List<FarmDetails> list = repository.findAll();
 		return ResponseEntity.ok(list);
