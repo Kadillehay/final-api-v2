@@ -15,7 +15,8 @@ import com.coderscampus.api.domain.ContactMessage;
 import com.coderscampus.api.repository.ContactMessageRepository;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://final-client-production.up.railway.app")
 public class ContactController {
 
 	@Autowired
