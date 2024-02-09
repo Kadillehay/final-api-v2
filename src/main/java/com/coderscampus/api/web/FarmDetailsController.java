@@ -17,7 +17,8 @@ import com.coderscampus.api.repository.FarmDetailsRepository;
 import com.coderscampus.api.repository.FarmRegisterRepository;
 
 @RestController
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
+@CrossOrigin(origins = "https://final-client-production.up.railway.app")
 public class FarmDetailsController {
 	
 	@Autowired
