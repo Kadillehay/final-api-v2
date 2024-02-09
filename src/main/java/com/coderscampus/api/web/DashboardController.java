@@ -22,7 +22,8 @@ import com.coderscampus.api.security.jwt.JwtDecoder;
 import com.coderscampus.api.security.jwt.JwtToPrincipalConverter;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://final-client-production.up.railway.app")
 public class DashboardController {
 
 	@Autowired
