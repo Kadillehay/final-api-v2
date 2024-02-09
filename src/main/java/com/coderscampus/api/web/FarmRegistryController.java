@@ -18,7 +18,8 @@ import com.coderscampus.api.security.jwt.JwtIssuer;
 import com.coderscampus.api.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://final-client-production.up.railway.app")
 public class FarmRegistryController {
 	
 	@Autowired
