@@ -21,8 +21,8 @@ import com.coderscampus.api.security.FarmUserDetails;
 import com.coderscampus.api.security.jwt.JwtIssuer;
 
 @RestController
-//@CrossOrigin(origins = "*")
-@CrossOrigin(origins = "https://final-client-production.up.railway.app")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "https://final-client-production.up.railway.app")
 public class LoginController {
 	@Autowired
 	FarmRegisterRepository farmRegisterRepo;

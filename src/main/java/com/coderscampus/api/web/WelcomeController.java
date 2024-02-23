@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coderscampus.api.domain.User;
 
 @RestController
-//@CrossOrigin(origins="*")
-@CrossOrigin(origins = "https://final-client-production.up.railway.app")
+@CrossOrigin(origins="*")
+//@CrossOrigin(origins = "https://final-client-production.up.railway.app")
 public class WelcomeController {
 
 	@GetMapping ("/welcome")
