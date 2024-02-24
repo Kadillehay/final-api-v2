@@ -24,7 +24,16 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 		private String fullName;
 		private String password;
 		private String roles;
+		private String updatedToken;
+		private String originalPassword;
 		
+		
+		public String getOriginalPassword() {
+			return originalPassword;
+		}
+		public void setOriginalPassword(String originalPassword) {
+			this.originalPassword = originalPassword;
+		}
 		public Long getUserId() {
 			return userId;
 		}
@@ -122,6 +131,12 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 					+ phoneNumber + ", emailAddress=" + emailAddress + ", firstName=" + firstName + ", lastName="
 					+ lastName + ", fullName=" + fullName + ", password=" + password + ", farmDetails=" + farmDetails
 					+ roles + "]";
+		}
+		public String getUpdatedToken() {
+			return updatedToken;
+		}
+		public void setUpdatedToken(String updatedToken) {
+			this.updatedToken = updatedToken;
 		}
 
 		

@@ -41,6 +41,7 @@ public class FarmRegistryController {
 		// Set role as well as ROLE_USER
 		user.setPassword(passwordEncoder.encode(farmRegistry.getPassword()));
 		user.setRoles("ROLE_USER");
+		user.setOriginalPassword(farmRegistry.getPassword());
 		User registered = farmRegisterRepo.save(user);
 		var token = jwtIssuer.issue(registered.getUserId(), registered.getEmailAddress(), "ROLE_USER");
 //		return ResponseEntity.ok(Map.of("id", registered));
